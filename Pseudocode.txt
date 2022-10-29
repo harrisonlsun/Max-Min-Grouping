@@ -1,0 +1,7 @@
+/** Pseudocode for Max-Min-Grouping
+ *
+ * Harrison Sun (sun.har@northeastern.edu)
+ *
+ * This file provides pseudocode for the Max-Min-Grouping program.
+ */
+
