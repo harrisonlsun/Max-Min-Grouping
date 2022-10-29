@@ -5,3 +5,48 @@
  * This file provides pseudocode for the Max-Min-Grouping program.
  */
 
+Given:
+Input array A[1,...,N] is an array with N elements.
+A is partitioned into M partitions.
+A grouping of array A is described by an array G[1,...,M]. The first group contains the first G[1] elements of A, the second group contains the next G[2] elements of A, and so on.
+Let the array B[1,...,M] be an array that summates elements such that B[j] is the summation of the elements in the j-th group of A.
+The optimal subproblem solution to max-min-grouping(A,N,M) is G[1,...,M] = [n1, n2, ..., nm-1, nm]. Then G[1,...,M-1] is the optimal solution to the subproblem max-min-grouping(A,N,M-1).
+
+Goal:
+Use dynamic programming to find a grouping of array A with M groups such that the minimum element of array B is maximized.
+
+Max-min-grouping(A,N,M)
+{
+	/* C[i,j] = the minimum element of array B described by optimal G[1,...,j] */
+	/* i = N, j = M */
+	
+	// iterate over an integer k from j-1 to i
+	for j-1 < k < i
+		C[i,j] = max min { C[k,j-1], SUM(A[m]) from m = k+1 to i }
+		P[i,j] = arg max min { C[k,j-1], SUM(A[m]) from m = k+1 to i } // P is a pointer to the position C[i,j] was derived from
+		
+	// C and P are now filled
+	// backtrack to find the optimal solution
+	// find the largest element of C[i,M] - it should be the last digit so we can just access C[N,M]
+	P[N,M] => access pointer for M-1; Store value; repeat until M = 1
+	// from the previous line, we should have values group location M, M-1, ..., 1
+	// Subtract to find the grouping of A
+	for i = 1 to M
+		G[i] = P[i+1] - P[i]
+	// find the values of B by summating the group values
+	for i = 1 to M
+		// Access the number of elements in the group from array G[]
+		for j = 1 to G[i]
+			// Sum the values of A[i] from 1 to G[i] and subtract the value of the previous group
+			B[i] = SUM(A[j]) from j = 1 to G[i] - B[i-1]
+	// print the values of G[] and B[]
+	print("The values of G:")
+	for i = 1 to M
+		print(G[i])
+	print("The values of B:")
+	for i = 1 to M
+		print(B[i])
+	return G[1,...,M];
+
+}
+
