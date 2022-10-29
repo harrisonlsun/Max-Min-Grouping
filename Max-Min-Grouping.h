@@ -16,6 +16,14 @@
 #include "d_except.h" /* Exception Handling for Try, Throw, Catch */
 #include "d_matrix.h" /* 2D Vectorized Matrix */
 
+/**
+ * @param int* A: The input array A
+ * @param int N: The number of elements in array A (this must be passed as the size of A is not inherenetly passed int oa function).
+ * @param int M: The number of groups in which to partition A.
+ *
+ * @return int* G: The grouping of array A.
+ */
+
 std::vector<int> MaxMinGrouping(int* A, int N, int M)
 {
 	/* declare vectors to represent the arrays */
